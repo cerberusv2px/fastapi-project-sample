@@ -31,4 +31,3 @@ for logger_name in LOGGERS:
 
 logger.configure(handlers=[{"sink": sys.stderr, "level": LOGGING_LEVEL}])
 logger.add(f"log-{datetime.today().strftime('%Y-%m-%d')}.log", rotation="00:00", retention="30 days")
-
