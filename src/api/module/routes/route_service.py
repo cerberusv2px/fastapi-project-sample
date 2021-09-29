@@ -1,8 +1,6 @@
 import json
-import logging
 
-from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
+from src.api.module.routes.route import BaseResponse
 
 response = """{
     "success": true,
@@ -392,11 +390,8 @@ response = """{
     ]
 }"""
 
-logger = logging.getLogger(__name__)
-
 
 def generate_route(request):
-    request_obj = jsonable_encoder(request)
-    logger.error(f"{request_obj} has an error")
     obj = json.loads(response)
-    return JSONResponse(content=obj)
+    base_response = BaseResponse.parse_obj(obj)
+    return base_response
